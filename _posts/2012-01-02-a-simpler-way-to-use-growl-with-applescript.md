@@ -3,6 +3,7 @@ layout: default
 title: A Simpler Way To Use Growl With Applescript
 ---
 
+<!-- excerpt start -->
 #A Simpler Way To Use Growl With Applescript
 2012-01-02
 
@@ -11,6 +12,7 @@ title: A Simpler Way To Use Growl With Applescript
 However, Growl suffers from a wordy AppleScript implementation. Each time you want to send a new notification, you have to register your application with Growl, register the notification with Growl, and then display it. Also, there are a bunch of version-incompatible ways to access the scriptable Growl object.
 
 This is an attempt to wrap all of this wordiness up into a single AppleScript handler which will let you create Growl notifications with a single line.
+<!-- excerpt end -->
 
 ##How To Set It Up
 

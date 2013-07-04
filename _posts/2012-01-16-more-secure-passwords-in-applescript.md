@@ -3,6 +3,7 @@ layout: default
 title: More Secure Passwords In Applescript
 ---
 
+<!-- excerpt start -->
 #More Secure Passwords In Applescript
 2012-01-16
 
@@ -24,6 +25,7 @@ If you've come across this problem before, you know that one solution is to put 
                     with administrator privileges
 
 Ideally, the password would be stored elsewhere, encrypted, and only accessed by the script when necessary. Luckily, OS X provides an application just for this. It's called Keychain Access, and is located in the Utilities subfolder.
+<!-- excerpt end -->
 
 ## Keychains
 
