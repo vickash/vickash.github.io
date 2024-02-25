@@ -1,11 +1,8 @@
 ---
-layout: default
+layout: single
+excerpt_separator: <!--more-->
 title: Temperature Logging with Dino and TempoDB
 ---
-
-<!-- excerpt start -->
-#Temperature Logging with Dino and TempoDB
-2013-07-09
 
 [Dino](http://github.com/austinbv/dino) is a Ruby gem that lets you control a connected Arduino with Ruby. It's very general purpose and already supports lots of hardware that you'd normally connect to an Arudino, including analog sensors, like the [TMP36 temperature sensor](http://learn.adafruit.com/tmp36-temperature-sensor) :
 
@@ -27,9 +24,9 @@ end
 
 Wouldn't it be better to get the actual temperature though?
 
-<!-- excerpt end -->
+<!--more-->
 
-##Calculating the Temperature
+## Calculating the Temperature
 
 This [Adafruit](http://learn.adafruit.com/tmp36-temperature-sensor/using-a-temp-sensor) article shows how voltage varies with temperature for the TMP36. If we do some simple calculations in the block, we can make it print the temperature in ºC instead:
 
@@ -43,7 +40,7 @@ end
 
 Finding out the temperature is great, but what if we want to keep track of it over time? Storing values in a database is probably the way to go. Standard relational or document-oriented databases aren't well suited to this type of data though. Luckily, there's a new service called [TempoDB](https://tempo-db.com/) that makes it easy to store and work with time-series data like this.
 
-##Logging with TempoDB
+## Logging with TempoDB
 
 You can read more about how it works in their [documentation](https://tempo-db.com/docs/getting-started/), but the gist is that you create a series and fill it with timestamp/value data pairs. If we created a series called 'temp' and wrote the temperature every 10 seconds, the raw data might look something like this:
 
@@ -78,10 +75,9 @@ end
 
 # Polling is in a separate thread. Sleep so our script doesnt die.
 sleep
-
 {% endhighlight %}
 
-##Visualization
+## Visualization
 
 This is where one of TempoDB's best features comes in. To make sure it's working, log into the TempoDB web app, click on "View Data" for your database, choose the 'temp' series, and the web app will graph the data for you.
 

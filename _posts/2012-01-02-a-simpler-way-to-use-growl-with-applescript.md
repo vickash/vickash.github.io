@@ -1,20 +1,17 @@
 ---
-layout: default
+layout: single
+excerpt_separator: <!--more-->
 title: A Simpler Way To Use Growl With Applescript
 ---
-
-<!-- excerpt start -->
-#A Simpler Way To Use Growl With Applescript
-2012-01-02
 
 [Growl](http://www.growl.info) is a great pop-up notifier that many Mac applications integrate with. If you write Applescripts for yourself or others, it's useful for displaying pop-up notifications, rather than dialog boxes, notifying users when a script runs on a schedule, or a trigger, or even to send users reminders.
 
 However, Growl suffers from a wordy AppleScript implementation. Each time you want to send a new notification, you have to register your application with Growl, register the notification with Growl, and then display it. Also, there are a bunch of version-incompatible ways to access the scriptable Growl object.
 
 This is an attempt to wrap all of this wordiness up into a single AppleScript handler which will let you create Growl notifications with a single line.
-<!-- excerpt end -->
+<!--more-->
 
-##How To Set It Up
+## How To Set It Up
 
 Step 1: Make sure you have Growl version >= 1.2.2 on your Mac. This might work with older versions, but I haven't tested it.
 

@@ -1,11 +1,8 @@
 ---
-layout: default
+layout: single
+excerpt_separator: <!--more-->
 title: More Secure Passwords In Applescript
 ---
-
-<!-- excerpt start -->
-#More Secure Passwords In Applescript
-2012-01-16
 
 Sometimes an Applecript needs authentication. For example, this happens if you use `do shell script` to run a UNIX command with administrator priveleges:
 
@@ -25,7 +22,7 @@ If you've come across this problem before, you know that one solution is to put 
                     with administrator privileges
 
 Ideally, the password would be stored elsewhere, encrypted, and only accessed by the script when necessary. Luckily, OS X provides an application just for this. It's called Keychain Access, and is located in the Utilities subfolder.
-<!-- excerpt end -->
+<!--more-->
 
 ## Keychains
 
@@ -37,21 +34,21 @@ To keep things clean, I recommend creating a new keychain specifically for stori
 
 Open Keychain Access.app and go to File > New Keychain... You can name the keychain anything and store it anywhere, but take note of its full path. You'll need that for the script to access it later.
 
-![Create a new keychain.](https://s3.amazonaws.com/vickashcodes/120116-01_more-secure-passwords-in-applescript/01.png)
+![Create a new keychain.](/images/2012-01-16-more-secure-passwords/01.png)
 
 2) You'll need to set a password for the keychain. This is separate from the credentials you want to store inside the keychain; it just restricts access to the keychain itself. Think of it like a LastPass or 1Password master password. 
 
-![Set a password for the keychain.](https://s3.amazonaws.com/vickashcodes/120116-01_more-secure-passwords-in-applescript/02.png)
+![Set a password for the keychain.](/images/2012-01-16-more-secure-passwords/02.png)
 
 3) Once the keychain is ready, create a generic password item by clicking on the "add" button below the empty list. Put in the credentials that you would have typed inline in the script before, and give the item a name. I've called it "Admin" here. It doesn't matter what you call it, but meaningful is better, and you'll need to know the name for the script to find the right item later.
 
-![Create a keychain item for the credentials you want to secure.](https://s3.amazonaws.com/vickashcodes/120116-01_more-secure-passwords-in-applescript/03.png)
+![Create a keychain item for the credentials you want to secure.](/images/2012-01-16-more-secure-passwords/03.png)
 
 4) To make things more convenient for the user, I recommend changing the keychain's settings so it doesn't automatically lock on sleep or after a period of inactivity. You can adjust this to your needs, but the idea is that the user will grant Applescript access to the keychain once, and then doesn't need to do so again until the next time he logs in.
 
-![Edit the keychain settings.](https://s3.amazonaws.com/vickashcodes/120116-01_more-secure-passwords-in-applescript/04.png)
+![Edit the keychain settings.](/images/2012-01-16-more-secure-passwords/04.png)
 
-![Set it so the keychain doesn't relock until the user logs out.](https://s3.amazonaws.com/vickashcodes/120116-01_more-secure-passwords-in-applescript/05.png)
+![Set it so the keychain doesn't relock until the user logs out.](/images/2012-01-16-more-secure-passwords/05.png)
 
 ## Access Keychain Data From Applescript
 
