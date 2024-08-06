@@ -64,7 +64,8 @@ sudo gem install lgpio
 ```
 
 ## Step 5: Enable I2C and SPI
-By default, GPIO is enabled, but none of the I2C or SPI interfaces are. DietPi makes this easy to change with a configuration file.
+
+By default, all pins are set to GPIO, and the I2C and SPI interfaces are disabled, but dietPi makes this easy to change with a configuration file.
 ```
 sudo nano /boot/dietpiEnv.txt
 ```
@@ -76,14 +77,18 @@ For example, the line below enables the `SPI1` interface (with `CS0` only), and 
 overlays=spidev1_0 pi-i2c1
 ```
 
-On the Orange Pi Zero 2W, the available SPI and I2C overlays are:
-- `spidev1_0` 
-- `spidev1_1`
-- `pi-i2c0`
-- `pi-i2c1`
-- `pi-i2c2`
+On the Orange Pi Zero 2W, these are the available SPI and I2C overlays, and pins they use (see pinout in Step 7):
+- `spidev1_0` (SPI1_CLK, SPI1_MOSI, SPI1_MISO, SPI1_CS0)
+- `spidev1_1` (SPI1_CLK, SPI1_MOSI, SPI1_MISO, SPI1_CS1)
+- `pi-i2c0` (TWI0_SCL, TWI0_SDA)
+- `pi-i2c1` (TWI1_SCL, TWI1_SDA)
+- `pi-i2c2` (TWI2_SCL, TWI2_SDA)
 
-**Note**: When you enable a SPI or I2C (or UART) interface, the pins used by that interface cannot be used for GPIO until you disable it and reboot. See pinout in the user manual linked above.
+**Note 1:** When you enable a SPI or I2C (or UART) interface, the pins used by that interface cannot be used for GPIO until you disable it and reboot.
+
+**Note 2:** The Zero 2W appears to have 3 internal I2C interfaces assigned `/dev/i2c-0` through `/dev/i2c-2`. As a result, the lowest numbered interface you enable will be appear as `/dev/i2c-3`, then `/dev/i2c-4`, and so on.
+
+For example, in my config above, overlay `pi-i2c1` becomes `/dev/i2c-3`.
 
 ## Step 6: Get Permission
 We have GPIO, I2C and SPI enabled, but that doesn't mean we can use them. By default, only the `root` user has permission. There are other ways to handle this, but Udev rules have been reliable for me.
@@ -117,8 +122,14 @@ sudo usermod -aG spi $(whoami)
 Reboot so changes from this step, and the previous, will take effect.
 
 ## Step 7: Test It
+**Orange Pi Zero 2W Pinout:**
+![Orange Pi Zero 2W Pinout 1](/images/0825-zero2w-img21.png)
+
+**Orange Pi Zero 2W GPIO Numbers:**
+![Orange Pi Zero 2W GPIO Numbers](/images/orangepi_zero2w_gpio.png)
+
 A blinking LED is the "Hello World!" of hardware, so let's try that:
-- Connect the positive side of an LED to GPIO 260, and its negative side to GND, through an appropriate resistor.
+- Connect the positive side of an LED to GPIO 260, and its negative side to any GND, through an appropriate resistor.
 - Save the [blink example](https://github.com/denko-rb/lgpio/blob/master/examples/blink.rb) from the `lgpio` repo as `blink.rb`.
 - Run `ruby blink.rb` and your LED should start blinking.
 
