@@ -37,8 +37,10 @@ Orange Pi has an official image for this board, but DietPi is more up to date an
   - `ssh root@<IP_ADDRESS_OF_YOUR_PI>` 
   - Password: `dietpi`
 - Follow the instructions to complete initial setup, selecting `avahi-daemon` for auto installation. You may disable the Serial/UART device when prompted.
+- Disconnect from this SSH session
 - For the remaining steps, connect with:
-  - `ssh dietpi@DietPi.local`
+  - `ssh dietpi@DietPi.local` or
+  - `ssh dietpi@<IP_ADDRESS_OF_YOUR_PI>`
 
 For more information, see the official DietPi [installation guide](https://dietpi.com/docs/install/).
 
@@ -74,21 +76,21 @@ On the line beginning with `overlays=`, append device tree overlay names (space 
 
 For example, the line below enables the `SPI1` interface (with `CS0` only), and the `I2C1` interface, my setup for development.
 ```
-overlays=spidev1_0 pi-i2c1
+overlays=spidev1_0 i2c1-pi
 ```
 
 On the Orange Pi Zero 2W, these are the available SPI and I2C overlays, and pins they use (see pinout in Step 7):
 - `spidev1_0` (SPI1_CLK, SPI1_MOSI, SPI1_MISO, SPI1_CS0)
 - `spidev1_1` (SPI1_CLK, SPI1_MOSI, SPI1_MISO, SPI1_CS1)
-- `pi-i2c0` (TWI0_SCL, TWI0_SDA)
-- `pi-i2c1` (TWI1_SCL, TWI1_SDA)
-- `pi-i2c2` (TWI2_SCL, TWI2_SDA)
+- `i2c0-pi` (TWI0_SCL, TWI0_SDA)
+- `i2c1-pi` (TWI1_SCL, TWI1_SDA)
+- `i2c2-pi` (TWI2_SCL, TWI2_SDA)
 
 **Note 1:** When you enable a SPI or I2C (or UART) interface, the pins used by that interface cannot be used for GPIO until you disable it and reboot.
 
 **Note 2:** The Zero 2W appears to have 3 internal I2C interfaces assigned `/dev/i2c-0` through `/dev/i2c-2`. As a result, the lowest numbered interface you enable will be appear as `/dev/i2c-3`, then `/dev/i2c-4`, and so on.
 
-For example, in my config above, overlay `pi-i2c1` becomes `/dev/i2c-3`.
+For example, in my config above, overlay `i2c1-pi` becomes `/dev/i2c-3`.
 
 ## Step 6: Get Permission
 We have GPIO, I2C and SPI enabled, but that doesn't mean we can use them. By default, only the `root` user has permission. There are other ways to handle this, but Udev rules have been reliable for me.
