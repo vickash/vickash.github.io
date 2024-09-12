@@ -1,5 +1,7 @@
 ---
 layout: single
+classes: wide
+author_profile: true
 excerpt_separator: <!--more-->
 title: More Secure Passwords In Applescript
 ---
@@ -36,7 +38,7 @@ Open Keychain Access.app and go to File > New Keychain... You can name the keych
 
 ![Create a new keychain.](/images/2012-01-16-more-secure-passwords/01.png)
 
-2) You'll need to set a password for the keychain. This is separate from the credentials you want to store inside the keychain; it just restricts access to the keychain itself. Think of it like a LastPass or 1Password master password. 
+2) You'll need to set a password for the keychain. This is separate from the credentials you want to store inside the keychain; it just restricts access to the keychain itself. Think of it like a LastPass or 1Password master password.
 
 ![Set a password for the keychain.](/images/2012-01-16-more-secure-passwords/02.png)
 
@@ -63,10 +65,10 @@ If you'd like your scripts to not have external dependencies, like I've needed o
 You can read more about `security` [here](http://developer.apple.com/library/mac/#documentation/Darwin/Reference/Manpages/man1/security.1.html), but we're mainly interested in is its `find-generic-password` option.
 
 If I run:
-    
+
     security 2>&1 find-generic-password -gs \
              "Admin" "/Users/Vickash/Library/Keychains/ScriptingDemo.keychain"
-    
+
 It returns:
 
     keychain: "/Users/Vickash/Library/Keychains/ScriptingDemo.keychain"
@@ -89,7 +91,7 @@ It returns:
       "svce"<blob>="Admin"
       "type"<uint32>=<NULL>
     password: "this is a test"
-    
+
 It's obvious that the only lines we need are `"acct"<blob>="Vickash"` and `password: "this is a test"`. By executing the shell command via AppleScript, and writing a separate handler to extract the data we need, I've come up with the following:
 
     on extractData(theText, theFieldName, theEndDelimiter, spaces)
@@ -126,17 +128,17 @@ It's obvious that the only lines we need are `"acct"<blob>="Vickash"` and `passw
                theKeychainItem
       end try
     end getCredentials
-    
-You can simply copy and paste these handlers into your script. Now, whenever your script script needs to get credentials from a keychain, do something like: 
 
-    set theCredentials to 
+You can simply copy and paste these handlers into your script. Now, whenever your script script needs to get credentials from a keychain, do something like:
+
+    set theCredentials to
         getCredentials of "Admin" ¬
         from "/Users/Vickash/Library/Keychains/ScriptingDemo.keychain"
-    
+
 This will return an AppleScript record. In my case:
 
     theCredentials is equal to {account: "Vickash", password: "this is a test"}
-    
+
 Now that the script has the login credentials stored in a record, I can execute the command that would have required manual authentication, like:
 
     do shell script "chown -R Vickash " & ¬
@@ -144,7 +146,7 @@ Now that the script has the login credentials stored in a record, I can execute 
                     user name (account of theCredentials) ¬
                     password (password of theCredentials) ¬
                     with administrator privileges
-    
+
 Which is much more secure than:
 
     do shell script "chown -R Vickash " & ¬
@@ -152,9 +154,9 @@ Which is much more secure than:
                     user name "Vickash" ¬
                     password "this is a test" ¬
                     with administrator privileges
-    
+
 ## Notes
- 
+
 * The first time the script runs, it will prompt you for the keychain password to unlock it. Put the password in and click "Always Allow" to give the script access to the keychain until it relocks itself, or you log out. Click "Allow" if you want to be prompted to unlock the keychain each time the script runs.
 
 * If you've used the settings I recommended, the keychain won't relock unless it's manually relocked via the Keychain Access app, or until you log out.

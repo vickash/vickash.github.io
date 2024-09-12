@@ -1,5 +1,7 @@
 ---
 layout: single
+classes: wide
+author_profile: true
 excerpt_separator: <!--more-->
 title: A Simpler Way To Use Growl With Applescript
 ---
@@ -54,12 +56,12 @@ Next, we get the file path to your script and extract the filename. This is used
 
 ## Notes
 
-* `allNotifications` is an AppleScript property, which persists across runs, but resets to an empty list when you edit or recompile the script. This means that, if you've set up custom styles or priorities in Growl for your script's notifications, they get reset if you edit or recompile.   
+* `allNotifications` is an AppleScript property, which persists across runs, but resets to an empty list when you edit or recompile the script. This means that, if you've set up custom styles or priorities in Growl for your script's notifications, they get reset if you edit or recompile.
 In most cases, this won't matter, but if it does to you, you can modify the handler to store the list of notifications in a text file in the same folder as the script, and read it in on each run. Overkill for my needs, but definitely a workable solution.
 
 * You can replace 'AppleScript Editor' with the name of any app whose icon you'd like to use for the notification.
 
-* You'll notice that I've addressed the Growl application by its id and not by its name. This is because `tell application "Growl"` works with version 1.3 and up only, but `tell application "GrowlHelperApp"` works with version 1.2.2 and lower only.  
+* You'll notice that I've addressed the Growl application by its id and not by its name. This is because `tell application "Growl"` works with version 1.3 and up only, but `tell application "GrowlHelperApp"` works with version 1.2.2 and lower only.
 I've found that by avoiding names altogether, and addressing it via id, the script works with all versions. Scripts you create with this handler should work regardless of which version of Growl is installed on the user's system.
 
 ## More About Growl

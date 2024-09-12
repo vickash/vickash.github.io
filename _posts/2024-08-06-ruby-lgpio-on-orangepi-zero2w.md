@@ -1,5 +1,7 @@
 ---
 layout: single
+classes: wide
+author_profile: true
 excerpt_separator: <!--more-->
 title: "Ruby & LGPIO on Orange Pi Zero 2W"
 ---
@@ -34,7 +36,7 @@ Orange Pi has an official image for this board, but DietPi is more up to date an
 - Insert the microSD card into the Zero 2W and connect power
 - Find its IP address on your local network ([Angry IP Scanner](https://angryip.org))
 - For initial setup, connect as root:
-  - `ssh root@<IP_ADDRESS_OF_YOUR_PI>` 
+  - `ssh root@<IP_ADDRESS_OF_YOUR_PI>`
   - Password: `dietpi`
 - Follow the instructions to complete initial setup, selecting `avahi-daemon` for auto installation. You may disable the Serial/UART device when prompted.
 - Disconnect from this SSH session

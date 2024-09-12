@@ -1,5 +1,7 @@
 ---
 layout: single
+classes: wide
+author_profile: true
 excerpt_separator: <!--more-->
 title: Temperature Logging with Dino and TempoDB
 ---
@@ -87,5 +89,3 @@ Refresh it and you should see new data points show up. Run it for a day and you'
 ![TMP36 Analog Temperature Sensor](/images/tempo-db-graph.png)
 
 The read API lets you get your data out and work with it, but I haven't used it much yet.
-
-
