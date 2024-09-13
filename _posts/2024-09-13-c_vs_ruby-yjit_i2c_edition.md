@@ -19,7 +19,7 @@ As a benchmark for I2C performance, I've been using a script that repeatedly fil
 
 Performance is pretty good. On a Raspberry Pi 4, it does about 85% of what the hardware bus (at 400 kHz) can do, consuming a CPU core in the process. Hardware I2C doesn't use the CPU.
 
-This is an extreme case, and it's moving upward of 300kbs here, which is a decent rate for I2C. Less demanding applications use proportionately less CPU, and work just fine.
+This is an extreme case, and it's moving upward of 300kbps here, which is a decent rate for I2C. Less demanding applications use proportionately less CPU, and work just fine.
 
 ## But Can We Make It Worse?
 
