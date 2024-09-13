@@ -29,7 +29,7 @@ github_username: vickash
 author:
   name: "vickash"
   avatar: "/images/github_image.png"
-  bio: "I write code, mostly Ruby, sometimes C, usually to do with electronics and hardware projects."
+  bio: "Coding for fun, mostly Ruby, sometimes C, usually to do with electronics and hardware."
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
