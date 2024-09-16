@@ -5,7 +5,7 @@ author_profile: true
 excerpt_separator: <!--more-->
 title: "Bit Bang SPI with Ruby+YJIT"
 ---
-In my previous post, I tested Ruby+YJIT against C, doing bit-bang I2C in the [lgpio gem](https://github.com/denko-rb/lgpio). The results convinced me to just do [bit-bang SPI in Ruby](https://github.com/denko-rb/lgpio/blob/master/lib/lgpio/spi_bitbang.rb).
+In my [previous post]({% post_url 2024-09-13-c_vs_ruby-yjit_i2c_edition %}), I tested Ruby+YJIT against C, doing bit-bang I2C in the [lgpio gem](https://github.com/denko-rb/lgpio). The results convinced me to just do [bit-bang SPI in Ruby](https://github.com/denko-rb/lgpio/blob/master/lib/lgpio/spi_bitbang.rb).
 
 Testing YJIT vs. plain Ruby for this is trivial, but can I compare against C, without *actually writing* a C implementation? SPI is almost the same as I2C for the purpose of my OLED benchmark. Could I use the I2C results somehow?  We'll get to that, but first...
 
