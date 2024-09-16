@@ -13,7 +13,7 @@ Testing YJIT vs. plain Ruby for this is trivial, but can I compare against C, wi
 
 Since the last post, I made an optimization to I2C: save the SDA pin state, and only call the C API when it needs to change, so fewer calls overall.
 
-For fairness, I did this for both implementations, and changed [C](https://github.com/denko-rb/lgpio/blob/f5df7486ae5cda145ed812b7fa32604fd7f12556/examples/i2c_bitbang-rb_ssd1306_bench.rb) and [Ruby](https://github.com/denko-rb/lgpio/blob/f5df7486ae5cda145ed812b7fa32604fd7f12556/examples/i2c_bitbang-rb_ssd1306_bench.rb) benchmarks to use a pattern of lines. This makes it so approximately half the time SDA needs to change, and the other half, it stays. It looks like this now:
+For fairness, I did this for both implementations, and changed the [C](https://github.com/denko-rb/lgpio/blob/f5df7486ae5cda145ed812b7fa32604fd7f12556/examples/i2c_bitbang-rb_ssd1306_bench.rb) and [Ruby](https://github.com/denko-rb/lgpio/blob/f5df7486ae5cda145ed812b7fa32604fd7f12556/examples/i2c_bitbang-rb_ssd1306_bench.rb) benchmarks to use a pattern of lines. This makes it so approximately half the time SDA needs to change, and the other half, it stays. It looks like this now:
 
 ![SSD1306 OLED Lines Benchmark](/images/2024-09-15-bit_bang_spi_with_ruby-yjit/oled_ssd1306_lines.gif)
 
